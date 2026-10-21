@@ -39,11 +39,19 @@ Cropping uses `ffmpeg` and `ffprobe`. The skill text is in Chinese.
 
 ## Test notes
 
-In October 2026 the skill ran in Codex (gpt-6.1-sol) through five rounds of revisions to one illustration of a Song-dynasty woman.
+**Test 1.** In October 2026 an early version ran in Codex (gpt-6.1-sol) through five rounds of revisions to one illustration of a Song-dynasty woman.
 
 - **Worked:** changed requirements left no stale items. Left/right mapping was right for both front and back camera angles. Local changes were made as edits, and the camera change as a regeneration. Unclear areas and failed generations were reported as such.
-- **Missed:** the checker passed the wrong art style four rounds in a row, until the user pointed it out. Two rules were added after that and have not been retested: style items list "must have / must not have / where to look", and a pass must name the place and what was seen there.
-- **Not exercised:** the stop-after-two-failures rule, and checks that first and last frames connect.
-- **Cost:** each round took about 10–20 minutes, partly from network retries. The independent checker adds time.
+- **Missed:** the checker passed the wrong art style four rounds in a row, until the user pointed it out.
+- **Cost:** about 10 million input tokens in the main session, each round taking 10–20 minutes, partly from network retries.
+
+**Test 2.** After the style and evidence rules were added, the skill ran in one Codex session (gpt-5.6-sol, low effort) for three rounds.
+
+- **Checking an existing image** (the wrong-style image from test 1): it failed the art style and the robe color, and passed the other three items, matching the user's own verdict.
+- **Automatic check:** after an edit it checked the new image without being asked. It failed the style again because hair and skin still had digital-painting shading, rather than passing a half-fixed image.
+- **User feedback became a rule:** a detail the user wanted kept for all later images (the fan tassel color) became a global checklist item, and it was checked.
+- **Stop rule:** after the style failed twice, it stopped and suggested a different approach instead of rerolling.
+- **Cost:** about 1.5 million input tokens in the main session for three rounds. Rounds took 5 minutes each without network errors and about 18 minutes with them.
+- **Not exercised:** checks that first and last frames connect.
 
 Status: experimental.
