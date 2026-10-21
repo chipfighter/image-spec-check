@@ -55,3 +55,7 @@ git clone https://github.com/chipfighter/image-spec-check ~/.codex/skills/image-
 - **没测到**：首尾帧衔接的核对。
 
 当前为实验版本。
+
+## 许可证
+
+[MIT](LICENSE)

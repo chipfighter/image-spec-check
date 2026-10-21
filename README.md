@@ -55,3 +55,7 @@ Cropping uses `ffmpeg` and `ffprobe`. The skill text is in Chinese.
 - **Not exercised:** checks that first and last frames connect.
 
 Status: experimental.
+
+## License
+
+[MIT](LICENSE)
